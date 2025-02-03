@@ -1,6 +1,8 @@
 #include <stdio.h>
+#define MAX_ACCOUNTS 20
 
 void createAccount();
+void viewBalance();
 
 
 struct Account {
@@ -11,7 +13,8 @@ struct Account {
     char pan[20];
 };
 
-int accountCount =0;
+struct Account accounts[MAX_ACCOUNTS];
+int accountCount = 0;  
  
 int main()
 {
@@ -33,6 +36,8 @@ int main()
         
         case 1: createAccount();
                 break;
+        case 2: viewBalance();
+        
         
     }
     
@@ -42,6 +47,11 @@ int main()
 
 void createAccount(){
     struct Account newacc;
+    
+    if (accountCount >= MAX_ACCOUNTS) {
+        printf("Sorry, account limit reached.\n");
+        return;
+    }
     
     newacc.accountNum = accountCount+1;
     
@@ -57,5 +67,26 @@ void createAccount(){
     printf("Enter Pan Card Number:\t");
     scanf("%s", newacc.pan);
     
+    accounts[accountCount] = newacc;
+    accountCount++;
+    
+    
     printf("Account Creation is Successful!!! Your Account Number: %d\n", newacc.accountNum);
 }
+
+void viewBalance() {
+    int accountNumber;
+    printf("Enter account number: ");
+    scanf("%d", &accountNumber);
+
+    
+    if (accountNumber <= 0 || accountNumber > accountCount) {
+        printf("Account not found!\n");
+        return;
+    }
+
+    printf("Account holder: %s\n", accounts[accountNumber-1].name);
+    printf("Current balance: %.2f\n", accounts[accountNumber-1].balance);
+}
+
+
