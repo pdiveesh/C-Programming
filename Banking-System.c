@@ -24,16 +24,19 @@ int main()
     int choice;
     
     printf("Welcome to SDN Bank!!\n");
-    
+    printf("\n");
+    printf("\n");
     
     //Main logic
     while(1){
         
     printf("How may I help you?\n");
-    printf("1. Create Account\n 2. ViewBalance\n 3. Deposit Amount\n 4. Withdraw Amount\n 5. Exit\n");  
     printf("\n");
-    printf("\n Enter your choice\n");
+    printf(" 1. Create Account\n 2. ViewBalance\n 3. Deposit Amount\n 4. Withdraw Amount\n 5. Exit\n");  
+    printf("\n");
+    printf("\n Enter your choice: ");
     scanf("%d", &choice);
+    printf("\n");
     
     switch(choice){
         
@@ -79,6 +82,7 @@ void createAccount(){
     
     
     printf("Account Creation is Successful!!! Your Account Number: %d\n", newacc.accountNum);
+    printf("\n");
 }
 
 void viewBalance() {
@@ -94,6 +98,7 @@ void viewBalance() {
 
     printf("Account holder: %s\n", accounts[accountNumber-1].name);
     printf("Current balance: %.2f\n", accounts[accountNumber-1].balance);
+    printf("\n");
 }
 
 void depositAmount(){
@@ -111,6 +116,7 @@ void depositAmount(){
     scanf("%d",&depAmount);
     accounts[accountNumber-1].balance+=depAmount;
     printf("Your balance: %.2f\n",accounts[accountNumber-1].balance );
+    printf("\n");
 }
   
 void withdrawAmount(){
@@ -121,15 +127,18 @@ void withdrawAmount(){
     
     if (accountNumber <= 0 || accountNumber > accountCount) {
         printf("Account not found!\n");
+        
         return;
     }
     printf("Enter withdraw Amount:");
     scanf("%d",&withAmount);
     if(accounts[accountNumber-1].balance<withAmount){
         printf("Insufficient Balance");
+        printf("\n");
     }
     accounts[accountNumber-1].balance-=withAmount;
     printf("Current Balance: %.2f\n",accounts[accountNumber-1].balance);
+    printf("\n");
         
 
 }
