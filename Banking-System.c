@@ -1,9 +1,11 @@
 #include <stdio.h>
+#include<stdlib.h>
 #define MAX_ACCOUNTS 20
 
 void createAccount();
 void viewBalance();
 void depositAmount();
+void withdrawAmount();
 
 struct Account {
     int accountNum;
@@ -28,7 +30,8 @@ int main()
     while(1){
         
     printf("How may I help you?\n");
-    printf("1. Create Account\n 2. ViewBalance\n 3. Deposit Amount\n 4. Withdraw Amount\n 5. Exit\n");
+    printf("1. Create Account\n 2. ViewBalance\n 3. Deposit Amount\n 4. Withdraw Amount\n 5. Exit\n");  
+    printf("\n");
     printf("\n Enter your choice\n");
     scanf("%d", &choice);
     
@@ -40,8 +43,9 @@ int main()
                 break;
         case 3: depositAmount();
                 break;
-        
-        
+        case 4: withdrawAmount();
+                break;
+        case 5: exit(0);
     }
     
     }
@@ -107,4 +111,25 @@ void depositAmount(){
     scanf("%d",&depAmount);
     accounts[accountNumber-1].balance+=depAmount;
     printf("Your balance: %.2f\n",accounts[accountNumber-1].balance );
+}
+  
+void withdrawAmount(){
+    int accountNumber;
+    int withAmount;
+    printf("Enter account number: ");
+    scanf("%d",&accountNumber);
+    
+    if (accountNumber <= 0 || accountNumber > accountCount) {
+        printf("Account not found!\n");
+        return;
+    }
+    printf("Enter withdraw Amount:");
+    scanf("%d",&withAmount);
+    if(accounts[accountNumber-1].balance<withAmount){
+        printf("Insufficient Balance");
+    }
+    accounts[accountNumber-1].balance-=withAmount;
+    printf("Current Balance: %.2f\n",accounts[accountNumber-1].balance);
+        
+
 }
