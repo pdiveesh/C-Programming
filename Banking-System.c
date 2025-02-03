@@ -3,7 +3,7 @@
 
 void createAccount();
 void viewBalance();
-
+void depositAmount();
 
 struct Account {
     int accountNum;
@@ -37,6 +37,9 @@ int main()
         case 1: createAccount();
                 break;
         case 2: viewBalance();
+                break;
+        case 3: depositAmount();
+                break;
         
         
     }
@@ -89,4 +92,19 @@ void viewBalance() {
     printf("Current balance: %.2f\n", accounts[accountNumber-1].balance);
 }
 
-
+void depositAmount(){
+    int accountNumber;
+    int depAmount;
+    printf("Enter account number: ");
+    scanf("%d",&accountNumber);
+    
+    if (accountNumber <= 0 || accountNumber > accountCount) {
+        printf("Account not found!\n");
+        return;
+    }
+    
+    printf("Enter deposit Amount: ");
+    scanf("%d",&depAmount);
+    accounts[accountNumber-1].balance+=depAmount;
+    printf("Your balance: %.2f\n",accounts[accountNumber-1].balance );
+}
